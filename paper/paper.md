@@ -65,7 +65,7 @@ Our prototype mounts DuckDB query outputs as read-only files and reconstructs VC
 - **Synthetic smoke tests** recreate tiny CSV and VCF outputs directly from DuckDB tables to validate formatter wiring and cache materialization.
 - **Canonical reconstruction** consumes the generated package for `0GOOR_HG002_subset` and produces a byte-for-byte identical VCF, proving that INFO/FORMAT/sample fields can be rehydrated from the split Parquet/TSV bundle without re-reading the original VCF text.
 
-Materialization is driven by prepared statements; user parameters (e.g., sample IDs) are bound positionally, while file-path literals are injected only for DuckDB table functions that require static strings. This removes the string-substitution SQL injection risk that existed in the earlier prototype.
+Materialization is driven by prepared statements; user parameters (e.g., sample IDs) are bound positionally, while file-path literals are injected only for DuckDB table functions that require static strings. 
 
 How to build and run: clone the code (`git clone https://github.com/ecrum19/flatviewfs`), then `cargo test -- --nocapture` for the smoke tests, or `cargo run -- --manifest examples/vcf-canonical.toml --mountpoint /tmp/flatviewfs --cache-dir /var/tmp/flatviewfs` to mount and inspect the virtual files.
 
