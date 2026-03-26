@@ -1,19 +1,19 @@
 ---
-title: 'BioHackEU23 report: Template for the very long title'
-title_short: 'BioHackEU23 #26: unknown chemical substances'
+title: '...'
+title_short: 'SWAT4HCLS26 #8: flatviewfs'
 tags:
-  - cheminformatics
-  - PubChem
-  - unknown chemical substances
+  - virtual file system
+  - tabular database
+  - variant call format (VCF) data
 authors:
   - name: Elias Crum
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0005-3991-754X
     affiliation: [1,2]
-    role: n/a
+    role: VCF to TSV conversion, duckDB data ingestion, manuscript writing + editing
   - name: Benno Kruit
     orcid: 0000-0000-0000-0000
     affiliation: 3
-    role: n/a
+    role: FUSE virtual file generation from duckDB data, manuscript writing + editing
 affiliations:
   - name: IDLab, Department of Electronics and Information Systems, Ghent University – imec, Belgium
     index: 1
@@ -71,7 +71,7 @@ look like this:
 ```yaml
 authors:
   - name: Elias Crum
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0005-3991-754X
     affiliation: [1,2]
     role: VCF to TSV conversion, duckDB data ingestion, manuscript writing + editing
   - name: Benno Kruit
