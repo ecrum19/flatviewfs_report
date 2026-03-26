@@ -1,5 +1,5 @@
 ---
-title: '...'
+title: 'FlatviewFS: Virtualizing VCFs stored as relational Parquet via FUSE and DuckDB'
 title_short: 'SWAT4HCLS26 #8: flatviewfs'
 tags:
   - virtual file system
