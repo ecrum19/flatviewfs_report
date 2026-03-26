@@ -6,37 +6,39 @@ tags:
   - PubChem
   - unknown chemical substances
 authors:
-  - name: First Author
-    affiliation: 1
-    role: Writing – original draft
-  - name: Last Author
+  - name: Elias Crum
     orcid: 0000-0000-0000-0000
-    affiliation: 2
-    role: Conceptualization, Writing – review & editing
+    affiliation: [1,2]
+    role: n/a
+  - name: Benno Kruit
+    orcid: 0000-0000-0000-0000
+    affiliation: 3
+    role: n/a
 affiliations:
-  - name: First Affiliation
+  - name: IDLab, Department of Electronics and Information Systems, Ghent University – imec, Belgium
     index: 1
-  - name: ELIXIR Europe
-    ror: 044rwnt51
+  - name: Flemish institute for Technological Research (VITO) Mol, Belgium
     index: 2
-date: 8 November 2023
+  - name: example
+    index: 3
+date: 26 March 2026
 cito-bibliography: paper.bib
-event: BH23EU
-biohackathon_name: "BioHackathon Europe 2023"
+event: SWAT4HCLS26 
+biohackathon_name: "BioHackathon SWAT4HCLS 2026"
 biohackathon_url:   "https://biohackathon-europe.org/"
-biohackathon_location: "Barcelona, Spain, 2023"
-group: Project 26
+biohackathon_location: "Amsterdam, The Netherlands, 2026"
+group: Project 8
 # URL to project git repo --- should contain the actual paper.md:
-git_url: https://github.com/biohackrxiv/publication-template
+git_url: https://github.com/ecrum19/flatviewfs_report
 # This is the short authors description that is used at the
 # bottom of the generated paper (typically the first two authors):
-authors_short: First Author \emph{et al.}
+authors_short: Elias Crum and Benno Kruit
 ---
 
 
 # Introduction
 
-As part of the BioHackathon Europe 2023, we here report...
+As part of the SWAT4HCLS 2026 BioHackathon, we here report our work on the design and implementation of a tool that serves a virtual flat-file view over data stored in a relational representation and demonstrated using Variant Call Format (VCF) genomic data files.
 
 ## Meeting information
 
@@ -47,11 +49,11 @@ organizers. The above list also provides information on the YAML fields with inf
 The following fields need to be given:
 
 ```YAML
-biohackathon_name: "BioHackathon Europe 2023"
+biohackathon_name: "SWAT4HCLS Biohackathon 2026"
 biohackathon_url:   "https://biohackathon-europe.org/"
-biohackathon_location: "Barcelona, Spain, 2023"
-group: Project 26
-git_url: https://github.com/yourOrganization/your_report_repo
+biohackathon_location: "Amsterdam, The Netherlands, 2026"
+group: Project 8
+git_url: https://github.com/ecrum19/flatviewfs_report
 ```
 
 The [BioHackrXiv meeting pages](https://index.biohackrxiv.org/meetings) provide content to use for the first
@@ -68,77 +70,29 @@ look like this:
 
 ```yaml
 authors:
-  - name: First Author
-    affiliation: 1
-  - name: Last Author
-    affiliation: 2
+  - name: Elias Crum
+    orcid: 0000-0000-0000-0000
+    affiliation: [1,2]
+    role: VCF to TSV conversion, duckDB data ingestion, manuscript writing + editing
+  - name: Benno Kruit
+    orcid: 0000-0000-0000-0000
+    affiliation: 3
+    role: FUSE virtual file generation from duckDB data, manuscript writing + editing
 affiliations:
-  - name: First Affiliation
+  - name: IDLab, Department of Electronics and Information Systems, Ghent University – imec, Belgium
     index: 1
-  - name: ELIXIR Europe
+  - name: Flemish institute for Technological Research (VITO) Mol, Belgium
     index: 2
+  - name: example
+    index: 3
 ```
 
-### Author identifiers
+# Introduction
+## Introduction
 
-Ideally, authors provide their [ORCID](https://orcid.org/) identifier. For affiliations, It is added with the `orcid:` field.
-So, and author record would look like this:
+This report describes the design and implementation of a tool that serves a virtual flat-file view over data stored in a relational representation. The central idea is to preserve the queryability and compact storage of a tabular backend while exposing the data through a conventional file interface that can be inspected with standard filesystem operations. In this work, compressed storage is provided through Apache Parquet, a columnar format designed for efficient storage and retrieval with built-in compression and encoding support, while DuckDB is used as the embedded analytical database managing the relational view of the data. The file-oriented presentation layer is implemented with FUSE, which enables user-space programs to export filesystems to the kernel and thereby present generated content as ordinary files. :contentReference[oaicite:0]{index=0}
 
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    orcid: 0000-0000-0000-0000
-```
-
-### Research Organization Registry identifiers
-
-Matching the author identifier, the affiliations can be further specified with the
-[Research Organization Registry](https://ror.org/) (ROR) identifier.
-For example, this is the affiliation identifier can be added with the `ror:` field:
-
-```yaml
-affiliations:
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 2
-```
-
-### Contributor Role Taxonomy
-
-A last feature since is minimal support for the Contributor Role Taxonomy (CRediT). You
-can specify the role of authors in writing the report with the `role:` field. However,
-the authors are responsible for selection the right terms from [CRediT](https://credit.niso.org/).
-An example looks like this:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    orcid: 0000-0000-0000-0000
-    role: Conceptualization, Writing – review & editing
-```
-
-### A full examples
-
-A full example then has this structure:
-
-```yaml
-authors:
-  - name: First Author
-    affiliation: 1
-    role: Writing – original draft
-  - name: Last Author
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
-    role: Conceptualization, Writing – review & editing
-affiliations:
-  - name: First Affiliation
-    index: 1
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 2
-```
+As a concrete demonstration, the tool is applied to genomic variant data represented in Variant Call Format (VCF). VCF is a text-based format consisting of meta-information lines, a header, and tab-delimited variant records with genotype information for one or more samples, making it a natural target for virtual flat-file materialization from relational tables. This setting provides a useful test case because VCF combines structured schema-like fields with a strict textual serialization, allowing the system to illustrate how relational records can be reconstructed into a standards-compliant, human-readable file without duplicating the underlying dataset. :contentReference[oaicite:1]{index=1}
 
 # Formatting
 
