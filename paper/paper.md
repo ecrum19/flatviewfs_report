@@ -11,7 +11,7 @@ authors:
     affiliation: [1,2]
     role: VCF to TSV conversion, duckDB data ingestion, manuscript writing + editing
   - name: Benno Kruit
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0002-0228-4823
     affiliation: 3
     role: FUSE virtual file generation from duckDB data, manuscript writing + editing
 affiliations:
