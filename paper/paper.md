@@ -24,9 +24,9 @@ affiliations:
 date: 26 March 2026
 cito-bibliography: paper.bib
 event: SWAT4HCLS26 
-biohackathon_name: "BioHackathon SWAT4HCLS 2026"
-biohackathon_url:   "https://biohackathon-europe.org/"
-biohackathon_location: "Amsterdam, The Netherlands, 2026"
+biohackathon_name: "SWAT4HCLS Biohackathon 2026"
+biohackathon_url: "https://www.swat4ls.org/swat4hcls-biohackathon-2026/"
+biohackathon_location: "Amsterdam, The Netherlands"
 group: Project 8
 git_url: https://github.com/ecrum19/flatviewfs_report
 authors_short: Elias Crum and Benno Kruit
